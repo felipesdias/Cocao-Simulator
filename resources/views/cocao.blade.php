@@ -29,13 +29,13 @@
           <div class="col s6">
             <label>Rate</label>
             <p class="range-field">
-              <input type="range" id="rate" min="1" max="100" value="10" />
+              <input type="range" id="rate" min="0.1" max="2" value="1" step="0.1" />
             </p>
           </div>
           <div class="col s6">
             <label>Pitch</label>
             <p class="range-field">
-              <input type="range" id="pitch" min="0" max="2" value="1" />
+              <input type="range" id="pitch" min="1" max="2" value="1" />
             </p>
           </div>
           <div class="col s12">
@@ -76,24 +76,31 @@ $(function(){
     speechSynthesis.onvoiceschanged = function() {
       var $voicelist = $('#voices');
 
-     
       if($voicelist.find('option').length == 0) {
         speechSynthesis.getVoices().forEach(function(voice, index) {
           var $option = $('<option>')
           .val(index)
           .html(voice.name + (voice.default ? ' (default)' :''));
-          if(voice.name.toLowerCase().split("google").length > 1 && (voice.name.toLowerCase().split("brasil").length > 1 || voice.name.toLowerCase().split("brazil").length > 1)) {
+
+          if(voice.name.toLowerCase().split("brasil").length > 1 || voice.name.toLowerCase().split("brazil").length > 1) {
             voice_id = index;
           }
+
           console.log(voice.name)
           $voicelist.append($option);
         });
 
-        $voicelist.material_select();
+        if(voice_id === -1)
+         $('#modal1').openModal();
+        else
+          $('#voices').find('option[value='+voice_id+']').prop('selected', true);
+        $("#voices").material_select();
+        // $voicelist.material_select();
+        // console.log($('#voices option[value='+voice_id+']').attr('selected','selected'))
+        // $voicelist.material_select();
       }
-      if(voice_id === -1)
-    	$('#modal1').openModal();
     }
+    // setTimeout(() => {$('#voices option[value='+voice_id+']').attr('selected','selected')}, 1000);
 
     $('#speak').click(function(){
     $.ajax({  
@@ -104,8 +111,9 @@ $(function(){
         var text = "coc"+resp.data.apelido;
 	      var msg = new SpeechSynthesisUtterance();
 	      var voices = window.speechSynthesis.getVoices();
-	      msg.voice = voices[$('#voice').val()];
-	      msg.rate = $('#rate').val()/10;
+        console.log($('#voices').val(), $('#rate').val()/10, $('#pitch').val())
+	      msg.voice = voices[$('#voices').val()];
+	      msg.rate = $('#rate').val();
 	      msg.pitch = $('#pitch').val();
 	      msg.text = text;
 
