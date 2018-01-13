@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\No;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class NoController extends Controller
 {
@@ -11,15 +12,13 @@ class NoController extends Controller
     	$id = 1;
     	$apelido = "";
     	$ids = [];
-    	$end = false;
     	$aux = true;
 
-    	while(count($apelido) < 5 && !$end && $aux) {
+    	while(strlen($apelido) < 7 && $aux) {
     		array_push($ids, $id);
     		$no = No::find($id);
     		$chute = rand(0,270000);
     		$total = 0;
-    		$end = false;
     		$aux = false;
 
     		for($c = 97; $c < 123; $c += 1) {
@@ -33,8 +32,11 @@ class NoController extends Controller
     				$apelido = $apelido.chr($c);
     				if(count($result) > 1)
 	    				$id = intval($result[1]);
-	    			else
-	    				$end = true;
+	    			else {
+	    				$novo = No::create()->id;
+	    				No::where("id", $id)->update([chr($c) => $qt.";".strval($novo)]);
+	    				$id = $novo;
+	    			}
 	    			$aux = true;
 	    			break;
 	    		}
