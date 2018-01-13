@@ -98,6 +98,7 @@ $(function(){
     // setTimeout(() => {$('#voices option[value='+voice_id+']').attr('selected','selected')}, 1000);
 
     $('#speak').click(function(){
+      alert($('#voices').val());
     $.ajax({  
        type: "GET",  
        url: "http://cocaosimulator.ddns.net/api/apelido/",  
