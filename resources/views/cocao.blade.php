@@ -13,7 +13,7 @@
       <div class="row">
         <nav>
           <div class="nav-wrapper">
-            <div class="col s12">
+            <div class="col s8 offset-s2">
               <a href="#" class="brand-logo">Text to speech example</a>
             </div>
           </div>
@@ -37,20 +37,16 @@
               <input type="range" id="pitch" min="1" max="2" value="1" />
             </p>
           </div>
-          <div class="col s12">
-            <p>N.B. Rate and Pitch only work with native voice.</p>
-          </div>
         </div>
-        <div class="row" style="display: none">
+        <!-- <div class="row" style="display: none">
           <div class="input-field col s12">
             <textarea id="message" class="materialize-textarea"></textarea>
             <label>Write message</label>
           </div>
-        </div>
+        </div> -->
         <a href="#" id="speak" class="waves-effect waves-light btn">Speak</a>
       </form>  
     </div>
-
 
     <div id="modal1" class="modal">
       <h4>Algo de errado não esta certo</h4>
