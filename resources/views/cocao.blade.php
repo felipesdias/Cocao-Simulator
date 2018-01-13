@@ -58,24 +58,26 @@
             </div>
           </div>
 
-          <div id="caixaAvalia" style="display: none" style="display: flex;
+          <div style="display: flex;
     align-items: center;
     justify-content: center;">
-            <div class="row">
-              <a href="#" id="a5" class="btn" style="background: red">5</a>
-              <a href="#" id="a8" class="btn" style="background: red">8</a>
-              <a href="#" id="a6" class="btn" style="background: red">6</a>
-              <a href="#" id="a7" class="btn" style="background: red">7</a>
-              <a href="#" id="a9" class="btn" style="background: red">9</a>
-              <a href="#" id="a10" class="btn" style="background: red">10</a>
-            </div>
-            <div class="row">
-              <a href="#" id="b5" class="btn" style="background: green">5</a>
-              <a href="#" id="b6" class="btn" style="background: green">6</a>
-              <a href="#" id="b7" class="btn" style="background: green">7</a>
-              <a href="#" id="b8" class="btn" style="background: green">8</a>
-              <a href="#" id="b9" class="btn" style="background: green">9</a>
-              <a href="#" id="b10" class="btn" style="background: green">10</a>
+            <div id="caixaAvalia" style="display: none" >
+              <div class="row">
+                <a href="#" id="a5" class="btn" style="background: red">5</a>
+                <a href="#" id="a8" class="btn" style="background: red">8</a>
+                <a href="#" id="a6" class="btn" style="background: red">6</a>
+                <a href="#" id="a7" class="btn" style="background: red">7</a>
+                <a href="#" id="a9" class="btn" style="background: red">9</a>
+                <a href="#" id="a10" class="btn" style="background: red">10</a>
+              </div>
+              <div class="row">
+                <a href="#" id="b5" class="btn" style="background: green">5</a>
+                <a href="#" id="b6" class="btn" style="background: green">6</a>
+                <a href="#" id="b7" class="btn" style="background: green">7</a>
+                <a href="#" id="b8" class="btn" style="background: green">8</a>
+                <a href="#" id="b9" class="btn" style="background: green">9</a>
+                <a href="#" id="b10" class="btn" style="background: green">10</a>
+              </div>
             </div>
           </div>
         </div>
