@@ -18,18 +18,18 @@
         </nav>
       </div>
       <form class="col s8 offset-s2">
-        <div class="row">
+        <div class="row s8">
           <label>Choose voice</label>
           <select id="voices"></select>
         </div>
-        <div class="row">
-          <div class="col s6">
+        <div class="row" >
+          <div class="col s4">
             <label>Velocidade</label>
             <p class="range-field">
               <input type="range" id="rate" min="0.1" max="2" value="1" step="0.1" />
             </p>
           </div>
-          <div class="col s6">
+          <div class="col s6" style="padding-top: 25px;">
             <div class="switch">
               <label>
                 Vozinha Off
@@ -40,8 +40,10 @@
             </div>
           </div>
         </div>
-        <div class="row">
-          <div class="input-field col s12">
+        <div class="row" style="display: flex;
+    align-items: center;
+    justify-content: center;">
+          <div class="input-field col s4">
             <input type="text" id="message" class="validate" disabled></input>
           </div>
         </div>
