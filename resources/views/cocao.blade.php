@@ -98,7 +98,7 @@ $(function(){
     $('#speak').click(function(){
     $.ajax({  
        type: "GET",  
-       url: "http://localhost:8000/api/apelido/",  
+       url: "http://cocaosimulator.ddns.net/api/apelido/",  
        data: "",  
        success: function(resp){  
           var text = "coc"+resp.data.apelido;
