@@ -46,10 +46,10 @@
           </div>
         </div>
 
-        <div style="display: flex;
+        <div>
+          <div class="row" style="display: flex;
     align-items: center;
     justify-content: center;">
-          <div class="row">
             <div id="buscaAudio">
               <a href="#" id="speak" class="waves-effect waves-light btn">Busca Texto</a>
             </div>
@@ -58,7 +58,9 @@
             </div>
           </div>
 
-          <div id="caixaAvalia" style="display: none">
+          <div id="caixaAvalia" style="display: none" style="display: flex;
+    align-items: center;
+    justify-content: center;">
             <div class="row">
               <a href="#" id="a5" class="btn" style="background: red">5</a>
               <a href="#" id="a8" class="btn" style="background: red">8</a>
