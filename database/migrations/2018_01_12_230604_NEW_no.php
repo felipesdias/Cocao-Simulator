@@ -41,7 +41,7 @@ class NEWNo extends Migration
             $table->string('x', 40)->default("10000;");
             $table->string('y', 40)->default("10000;");
             $table->string('z', 40)->default("10000;");
-            $table->string('$', 40)->default("10000;");
+            $table->string('{', 40)->default("10000;");
         });
     }
 
