@@ -10,7 +10,7 @@
 
   </head>
   <body>
-    <div class="container" style="display: none">
+    <div class="container">
       <div class="row">
         <nav>
           <div class="nav-wrapper">
@@ -42,16 +42,16 @@
             <p>N.B. Rate and Pitch only work with native voice.</p>
           </div>
         </div>
-        <div class="row">
+        <div class="row" style="display: none">
           <div class="input-field col s12">
             <textarea id="message" class="materialize-textarea"></textarea>
             <label>Write message</label>
           </div>
         </div>
+        <a href="#" id="speak" class="waves-effect waves-light btn">Speak</a>
       </form>  
     </div>
 
-    <a href="#" id="speak" class="waves-effect waves-light btn">Speak</a>
 
     <div id="modal1" class="modal">
       <h4>Algo de errado não esta certo</h4>
@@ -101,12 +101,12 @@ $(function(){
        url: "http://cocaosimulator.ddns.net/api/apelido/",  
        data: "",  
        success: function(resp){  
-          var text = "coc"+resp.data.apelido;
+        var text = "coc"+resp.data.apelido;
 	      var msg = new SpeechSynthesisUtterance();
 	      var voices = window.speechSynthesis.getVoices();
-	      msg.voice = voices[16];
-	      msg.rate = 1;
-	      msg.pitch = 1;
+	      msg.voice = voices[$('#voice').val()];
+	      msg.rate = $('#rate').val()/10;
+	      msg.pitch = $('#pitch').val();
 	      msg.text = text;
 
 	      speechSynthesis.speak(msg);
