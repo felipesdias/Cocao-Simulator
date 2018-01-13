@@ -64,42 +64,19 @@
             <div id="caixaAvalia" style="display: none" >
               <div class="row">
                 <div class="col s2">
-                  <a href="#" id="a5" class="btn col s12" style="background: red">-1</a>
+                  <a href="#" id="a1" class="btn col s12" style="background: red">1</a>
                 </div>
                 <div class="col s2">
-                  <a href="#" id="a8" class="btn col s12" style="background: red">-2</a>
+                  <a href="#" id="a2" class="btn col s12" style="background: red">2</a>
                 </div>
                 <div class="col s2">
-                  <a href="#" id="a6" class="btn col s12" style="background: red">-3</a>
+                  <a href="#" id="a3" class="btn col s12" style="background: red">3</a>
                 </div>
                 <div class="col s2">
-                  <a href="#" id="a7" class="btn col s12" style="background: red">-4</a>
+                  <a href="#" id="a4" class="btn col s12" style="background: red">4</a>
                 </div>
                 <div class="col s2">
-                  <a href="#" id="a9" class="btn col s12" style="background: red">-5</a>
-                </div>
-                <div class="col s2">
-                  <a href="#" id="a10" class="btn col s12" style="background: red">-6</a>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col s2">
-                  <a href="#" id="b5" class="btn col s12" style="background: green">+1</a>
-                </div>
-                <div class="col s2">
-                  <a href="#" id="b6" class="btn col s12" style="background: green">+2</a>
-                </div>
-                <div class="col s2">
-                  <a href="#" id="b7" class="btn col s12" style="background: green">+3</a>
-                </div>
-                <div class="col s2">
-                  <a href="#" id="b8" class="btn col s12" style="background: green">+4</a>
-                </div>
-                <div class="col s2">
-                  <a href="#" id="b9" class="btn col s12" style="background: green">+5</a>
-                </div>
-                <div class="col s2">
-                  <a href="#" id="b10" class="btn col s12" style="background: green">+6</a>
+                  <a href="#" id="a5" class="btn col s12" style="background: red">5</a>
                 </div>
               </div>
             </div>
@@ -201,18 +178,11 @@ $(function(){
       })
     }
 
-    $('#a10').click(function() {tocaAvalia(-10)})
-    $('#a9').click(function() {tocaAvalia(-9)})
-    $('#a8').click(function() {tocaAvalia(-8)})
-    $('#a7').click(function() {tocaAvalia(-7)})
-    $('#a6').click(function() {tocaAvalia(-6)})
-    $('#a5').click(function() {tocaAvalia(-5)})
-    $('#b5').click(function() {tocaAvalia(5)})
-    $('#b6').click(function() {tocaAvalia(6)})
-    $('#b7').click(function() {tocaAvalia(7)})
-    $('#b8').click(function() {tocaAvalia(8)})
-    $('#b9').click(function() {tocaAvalia(9)})
-    $('#b10').click(function() {tocaAvalia(10)})
+    $('#a1').click(function() {tocaAvalia(-10)})
+    $('#a2').click(function() {tocaAvalia(-5)})
+    $('#a3').click(function() {tocaAvalia(2)})
+    $('#a4').click(function() {tocaAvalia(5)})
+    $('#a5').click(function() {tocaAvalia(10)})
   } else {
     $('#modal1').openModal();
   }
