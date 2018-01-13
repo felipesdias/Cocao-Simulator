@@ -90,15 +90,10 @@ $(function(){
         else
           $('#voices').find('option[value='+voice_id+']').prop('selected', true);
         $("#voices").material_select();
-        // $voicelist.material_select();
-        // console.log($('#voices option[value='+voice_id+']').attr('selected','selected'))
-        // $voicelist.material_select();
       }
     }
-    // setTimeout(() => {$('#voices option[value='+voice_id+']').attr('selected','selected')}, 1000);
 
     $('#speak').click(function(){
-      alert($('#voices').val());
     $.ajax({  
        type: "GET",  
        url: "http://cocaosimulator.ddns.net/api/apelido/",  
