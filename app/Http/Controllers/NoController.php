@@ -23,7 +23,7 @@ class NoController extends Controller
     		$aux = false;
 
     		for($c = 97; $c < 123; $c += 1) {
-    			$result = explode("|", $no[chr($c)]);
+    			$result = explode(";", $no[chr($c)]);
     			$qt = intval($result[0]);
 
 
