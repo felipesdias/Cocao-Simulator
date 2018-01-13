@@ -12,10 +12,8 @@
     <div style="padding: 20px 20px">
       <div class="row">
         <nav>
-          <div class="nav-wrapper">
-            <div class="col s8 offset-s2">
-              <a href="#" class="brand-logo">Text to speech example</a>
-            </div>
+          <div class="col s12 offset-s2">
+            <a class="brand-logo">iCocão</a>
           </div>
         </nav>
       </div>
