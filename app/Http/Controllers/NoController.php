@@ -25,12 +25,11 @@ class NoController extends Controller
     			$result = explode(";", $no[chr($c)]);
     			$qt = intval($result[0]);
 
-
     			$total += $qt;
 
     			if($chute < $total) {
     				$apelido = $apelido.chr($c);
-    				if(count($result) > 1)
+    				if($result[1] != "")
 	    				$id = intval($result[1]);
 	    			else {
 	    				$novo = No::create()->id;
@@ -43,5 +42,54 @@ class NoController extends Controller
     		}
     	}
     	return response()->success(compact('apelido', 'ids'));
+    }
+
+    public function avalia(Request $request) {
+        $apelido = $request->apelido;
+        $ids = $request->ids;
+        $tam = count($ids);
+        $porcent = $request->valor/100;
+
+        for($i = 0; $i < $tam; $i++) {
+            if($i == $tam-1)
+                $letra = "{";
+            else
+                $letra = $apelido[$i];
+
+
+            $no = No::find($ids[$i]);
+            $divideP = explode(";", $no[$letra]);
+            
+            if($porcent < 0)
+                $total = floor((intval($divideP[0])*$porcent*3)/26)*-1;
+            else
+                $total = 0;
+
+
+            for($c = 97; $c < 124; $c += 1) {
+                if(chr($c) != $letra) {
+                    $divide = explode(";", $no[chr($c)]);
+
+                    if($porcent < 0){
+                        $no[chr($c)] = (intval($divide[0])+$total).";".$divide[1];
+                    } else {
+                        $val = floor(intval($divide[0])*$porcent);
+                        $total += abs($val);
+                        $no[chr($c)] = (intval($divide[0])-$val).";".$divide[1];
+                    }
+                }
+            }
+
+            if($porcent < 0) {
+                $no[$letra] = (intval($divideP[0])-$total*26).";".$divideP[1];
+                $no->save();
+            } else {
+                $no[$letra] = (intval($divideP[0])+$total).";".$divideP[1];
+                $no->save();
+            }
+        }
+
+
+        return $this->geraApelido();
     }
 }

@@ -9,12 +9,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.95.1/js/materialize.min.js"></script>
   </head>
   <body>
-    <div style="padding: 20px 20px">
+    <div class="container">
       <div class="row">
-        <nav>
-          <div class="col s12 offset-s2">
+        <nav>    
+          <div class="center-align">
             <a class="brand-logo">iCocão</a>
-          </div>
+          <div>
         </nav>
       </div>
       <form class="col s8 offset-s2">
@@ -24,25 +24,59 @@
         </div>
         <div class="row">
           <div class="col s6">
-            <label>Rate</label>
+            <label>Velocidade</label>
             <p class="range-field">
               <input type="range" id="rate" min="0.1" max="2" value="1" step="0.1" />
             </p>
           </div>
           <div class="col s6">
-            <label>Pitch</label>
-            <p class="range-field">
-              <input type="range" id="pitch" min="1" max="2" value="1" />
-            </p>
+            <div class="switch">
+              <label>
+                Vozinha Off
+                <input type="checkbox" id="vozinha">
+                <span class="lever"></span>
+                Vozinha On
+              </label>
+            </div>
           </div>
         </div>
-        <!-- <div class="row" style="display: none">
+        <div class="row">
           <div class="input-field col s12">
-            <textarea id="message" class="materialize-textarea"></textarea>
-            <label>Write message</label>
+            <input type="text" id="message" class="validate" disabled></input>
           </div>
-        </div> -->
-        <a href="#" id="speak" class="waves-effect waves-light btn">Speak</a>
+        </div>
+
+        <div style="display: flex;
+    align-items: center;
+    justify-content: center;">
+          <div class="row">
+            <div id="buscaAudio">
+              <a href="#" id="speak" class="waves-effect waves-light btn">Busca Texto</a>
+            </div>
+            <div id="tocarDenovo" style="display: none">
+              <a href="#" id="tocarAudio" class="waves-effect waves-light btn">Escutar novamente</a>
+            </div>
+          </div>
+
+          <div id="caixaAvalia" style="display: none">
+            <div class="row">
+              <a href="#" id="a5" class="btn" style="background: red">5</a>
+              <a href="#" id="a8" class="btn" style="background: red">8</a>
+              <a href="#" id="a6" class="btn" style="background: red">6</a>
+              <a href="#" id="a7" class="btn" style="background: red">7</a>
+              <a href="#" id="a9" class="btn" style="background: red">9</a>
+              <a href="#" id="a10" class="btn" style="background: red">10</a>
+            </div>
+            <div class="row">
+              <a href="#" id="b5" class="btn" style="background: green">5</a>
+              <a href="#" id="b6" class="btn" style="background: green">6</a>
+              <a href="#" id="b7" class="btn" style="background: green">7</a>
+              <a href="#" id="b8" class="btn" style="background: green">8</a>
+              <a href="#" id="b9" class="btn" style="background: green">9</a>
+              <a href="#" id="b10" class="btn" style="background: green">10</a>
+            </div>
+          </div>
+        </div>
       </form>  
     </div>
 
@@ -56,11 +90,6 @@
     </div>
   </body>
 </html>
-
-
-
-
-
 
 <script>
 $(function(){
@@ -91,28 +120,71 @@ $(function(){
       }
     }
 
+    var atual = ''
+    var ids = []
+
+    var tocaAudio = () => {
+      $("#message").val("coc"+atual)
+      var text = $('#message').val();
+      var msg = new SpeechSynthesisUtterance();
+      var voices = window.speechSynthesis.getVoices();
+      console.log($('#voices').val(), $('#rate').val()/10, $('#pitch').val())
+      msg.voice = voices[$('#voices').val()];
+      msg.rate = $('#rate').val();
+      msg.pitch = ($('#vozinha').prop('checked')) ? 2 : 1;
+      msg.text = text;
+
+      speechSynthesis.speak(msg);
+    }
+
+    $('#tocarAudio').click(function(){
+      tocaAudio()
+    })
+
     $('#speak').click(function(){
-    $.ajax({  
+      $.ajax({
        type: "GET",  
-       url: "http://cocaosimulator.ddns.net/api/apelido/",  
+       url: "http://localhost:8000/api/apelido/",  
        data: "",  
        success: function(resp){  
-        var text = "coc"+resp.data.apelido;
-	      var msg = new SpeechSynthesisUtterance();
-	      var voices = window.speechSynthesis.getVoices();
-        console.log($('#voices').val(), $('#rate').val()/10, $('#pitch').val())
-	      msg.voice = voices[$('#voices').val()];
-	      msg.rate = $('#rate').val();
-	      msg.pitch = $('#pitch').val();
-	      msg.text = text;
-
-	      speechSynthesis.speak(msg);
+        atual = resp.data.apelido
+        ids = resp.data.ids
+        $('#tocarDenovo').css("display", "inline")
+        $('#caixaAvalia').css("display", "inline")
+        $('#buscaAudio').css("display", "none")
+        tocaAudio()
        },  
        error: function(e){  
          alert('Erro requisição');  
        }  
      });
     })
+
+    var tocaAvalia = function(valor) {
+      $.ajax({
+        type: "POST",  
+        url: "http://localhost:8000/api/avalia/",  
+        data: {apelido: atual, ids: ids, valor: valor},
+        success: function(resp){
+          atual = resp.data.apelido
+          ids = resp.data.ids
+          tocaAudio()
+        }
+      })
+    }
+
+    $('#a10').click(function() {tocaAvalia(-10)})
+    $('#a9').click(function() {tocaAvalia(-9)})
+    $('#a8').click(function() {tocaAvalia(-8)})
+    $('#a7').click(function() {tocaAvalia(-7)})
+    $('#a6').click(function() {tocaAvalia(-6)})
+    $('#a5').click(function() {tocaAvalia(-5)})
+    $('#b5').click(function() {tocaAvalia(5)})
+    $('#b6').click(function() {tocaAvalia(6)})
+    $('#b7').click(function() {tocaAvalia(7)})
+    $('#b8').click(function() {tocaAvalia(8)})
+    $('#b9').click(function() {tocaAvalia(9)})
+    $('#b10').click(function() {tocaAvalia(10)})
   } else {
     $('#modal1').openModal();
   }

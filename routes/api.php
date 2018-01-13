@@ -12,3 +12,4 @@
  */
 
 Route::get('apelido', 'NoController@geraApelido');
+Route::post('avalia', 'NoController@avalia');
