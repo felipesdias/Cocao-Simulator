@@ -9,7 +9,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.95.1/js/materialize.min.js"></script>
   </head>
   <body>
-    <div class="container">
+    <div>
       <div class="row">
         <nav>    
           <div class="center-align">
@@ -144,7 +144,7 @@ $(function(){
     $('#speak').click(function(){
       $.ajax({
        type: "GET",  
-       url: "http://localhost:8000/api/apelido/",  
+       url: "http://icocao.ddns.net/api/apelido/",  
        data: "",  
        success: function(resp){  
         atual = resp.data.apelido
@@ -163,7 +163,7 @@ $(function(){
     var tocaAvalia = function(valor) {
       $.ajax({
         type: "POST",  
-        url: "http://localhost:8000/api/avalia/",  
+        url: "http://icocao.ddns.net/api/avalia/",  
         data: {apelido: atual, ids: ids, valor: valor},
         success: function(resp){
           atual = resp.data.apelido
