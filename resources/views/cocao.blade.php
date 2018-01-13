@@ -164,7 +164,7 @@ $(function(){
       $.ajax({
         type: "POST",  
         url: "http://icocao.ddns.net/api/avalia/",  
-        data: {apelido: atual, ids: ids, valor: valor},
+        data: {apelido: atual, ids: ids, valor: valor*1.5},
         success: function(resp){
           atual = resp.data.apelido
           ids = resp.data.ids
