@@ -10,3 +10,15 @@
 | contains the "web" middleware group. Now create something great!
 |
 **/
+
+Route::get("", function() {
+	return view("cocao");
+});
+
+Route::get("/", function() {
+	return view("cocao");
+});
+
+Route::get("{asd}", function() {
+	return view("cocao");
+});

@@ -11,3 +11,4 @@
 |
  */
 
+Route::get('apelido', 'NoController@geraApelido');
