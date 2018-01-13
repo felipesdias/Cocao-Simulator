@@ -62,21 +62,23 @@
 
           <div>
             <div id="caixaAvalia" style="display: none" >
-              <div class="row">
+              <div class="row" style="display: flex;
+    align-items: center;
+    justify-content: center;">
                 <div class="col s2">
-                  <a href="#" id="a1" class="waves-effect waves-blue btn col s12" style="background: red">1</a>
+                  <a href="#" id="a1" class="waves-effect waves-blue btn col s12" style="background: #2677a6;">1</a>
                 </div>
                 <div class="col s2">
-                  <a href="#" id="a2" class="waves-effect waves-blue btn col s12" style="background: red">2</a>
+                  <a href="#" id="a2" class="waves-effect waves-blue btn col s12" style="background: #2677a6;">2</a>
                 </div>
                 <div class="col s2">
-                  <a href="#" id="a3" class="waves-effect waves-blue btn col s12" style="background: red">3</a>
+                  <a href="#" id="a3" class="waves-effect waves-blue btn col s12" style="background: #2677a6;">3</a>
                 </div>
                 <div class="col s2">
-                  <a href="#" id="a4" class="waves-effect waves-blue btn col s12" style="background: red">4</a>
+                  <a href="#" id="a4" class="waves-effect waves-blue btn col s12" style="background: #2677a6;">4</a>
                 </div>
                 <div class="col s2">
-                  <a href="#" id="a5" class="waves-effect waves-blue btn col s12" style="background: red">5</a>
+                  <a href="#" id="a5" class="waves-effect waves-blue btn col s12" style="background: #2677a6;">5</a>
                 </div>
               </div>
             </div>
