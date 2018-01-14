@@ -8,6 +8,44 @@ use Illuminate\Support\Facades\DB;
 
 class NoController extends Controller
 {
+    public function calcPer($valor) {
+        return number_format(($valor*100)/270000, 2, '.', '');
+    }
+
+    public function relatorio() {
+        $relatorio = [];
+        $apelido = '';
+        $porcent = [];
+
+        $atual = [];
+        $id = 1;
+        while(true && $id != 0) {
+            $no = No::find($id);
+            $best = -1;
+            $letra = '';
+            $aux = '';
+            for($c = 97; $c < 123; $c += 1) {
+                $r = explode(";", $no[chr($c)]);
+                $atual[chr($c)] = [intval($r[0]), intval($r[1])];
+                
+                $aux = $aux."   ".chr($c)." = ".$this->calcPer(intval($r[0]));
+                if(intval($r[0]) > $best) {
+                    $best = intval($r[0]);
+                    $letra = chr($c);
+                    $id = intval($r[1]);
+                }
+            }
+            $apelido = $apelido.$letra;
+            array_push($relatorio, $aux);
+            array_push($porcent, $this->calcPer($best));
+
+            if($letra == "{")
+                break;
+        }
+
+        return response()->success(compact('relatorio', 'apelido', 'porcent'));
+    }
+
     public function geraApelido() {
     	$id = 1;
     	$apelido = "";

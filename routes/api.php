@@ -12,4 +12,5 @@
  */
 
 Route::get('apelido', 'NoController@geraApelido');
+Route::get('relatorio', 'NoController@relatorio');
 Route::post('avalia', 'NoController@avalia');
